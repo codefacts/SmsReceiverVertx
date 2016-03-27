@@ -1,0 +1,25 @@
+{
+  "CURRENT_PROFILE": "dev",
+  "PROFILES": {
+    "dev": {
+      "PORT": 8085,
+      "dev-mode": false,
+      "database": {
+        "user": "root",
+        "password": "",
+        "url": "jdbc:mysql://localhost:3306/sms_db"
+      },
+      "com.ports": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+      "sms_format": [
+        {"BR_NAME": "S"},
+        {"MOBILE": "S"},
+        {"AGE": "I"},
+        {"Date": "DT"},
+        {"PTR": "B"}
+      ],
+      "sms_delimiter": "*"
+    },
+    "production": {
+    }
+  }
+}

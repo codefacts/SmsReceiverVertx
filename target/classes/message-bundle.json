@@ -1,0 +1,15 @@
+{
+  "validation.error": "Invalid data. Data is not in the correct format. Your Data: ${value}",
+  "invalid.type.validation.error": "Invalid Type: [${field}: ${value}]. Expected type: ${type}.",
+  "invalid.range.validation.error": "Invalid Range: [${field}: ${value}]. Expected range: ${min}-${max}.",
+  "null.validation.error": "No value given for [${field}].",
+  "invalid.value.validation.error": "Invalid data: [${field}: ${value}].",
+  "pattern.validation.error": "Invalid pattern: [${field}: ${value}].",
+  "max.length.validation.error": "Max limit exceeds: [${field}: ${value}]. Max: ${max}",
+  "min.length.validation.error": "Below min limit: [${field}: ${value}]. Min: ${min}",
+  "length.validation.error": "Text size too long: [${field}]. Text size must be within ${length} characters.",
+  "invalid.email.validation.error": "Invalid email: [${field}: ${value}].",
+  "invalid.phone.validation.error": "Invalid Phone: [${field}: ${value}].",
+  "value.missing.validation.error": "Value Missing: [${field}].",
+  "invalid.sequence.order.validation.error": "Invalid order: [${field}: ${value}]."
+}
