@@ -12,6 +12,8 @@ import io.crm.pipelines.validator.Validator;
 import io.crm.pipelines.validator.composer.JsonObjectValidatorComposer;
 import io.crm.promise.Promises;
 import io.crm.util.Util;
+import io.crm.web.util.Convert;
+import io.crm.web.util.Converters;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -49,7 +51,7 @@ public class SmsTransformAndValidate {
             .map(m -> m.keySet().stream().findFirst().get()).collect(Collectors.toList()));
 
 
-        HashMap<String, Function<String, ?>> map = new HashMap<>();
+        HashMap<String, Function<Object, Object>> map = new HashMap<>();
         list.stream().map(m -> m.entrySet().stream().findAny().get())
             .forEach(e -> map.put(e.getKey(),
                 ValueTypes.valueOf(e.getValue().toString().toUpperCase()).converter));
@@ -194,16 +196,16 @@ public class SmsTransformAndValidate {
 
     enum ValueTypes {
         S(s -> s),
-        N(Double::parseDouble),
-        I(val -> new Double(Double.parseDouble(val)).intValue()),
-        D(Double::parseDouble),
-        B(val -> Util.apply(val.toUpperCase(), s -> s.equals("Y") || s.equals("YES") ? true : false)),
-        DT(val -> Util.toIsoString(Util.parseDate(val)));
+        N(val -> Double.parseDouble(val.toString())),
+        I(val -> new Double(val.toString()).intValue()),
+        D(val -> Double.parseDouble(val.toString())),
+        B(val -> Util.apply(val.toString().toUpperCase(), s -> s.equals("Y") || s.equals("YES") ? true : false)),
+        DT(val -> Util.toIsoString(Util.parseDate(val.toString())));
 
 
-        private final Function<String, ?> converter;
+        private final Function<Object, Object> converter;
 
-        ValueTypes(Function<String, Object> converter) {
+        ValueTypes(Function<Object, Object> converter) {
             this.converter = converter;
         }
     }

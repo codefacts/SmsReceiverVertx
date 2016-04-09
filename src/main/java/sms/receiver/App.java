@@ -1,14 +1,12 @@
 package sms.receiver;
 
-import io.crm.FailureCodes;
+import io.crm.ErrorCodes;
 import io.crm.MessageBundle;
-import io.crm.util.ExceptionUtil;
 import io.crm.util.Util;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.json.JsonObject;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -20,7 +18,7 @@ public class App {
     public static final String MESSAGE_BUNDLE_JSON = "message-bundle.json";
     private static final JsonObject CONFIG = Util.loadConfig(App.class);
     private static final MessageBundle MESSAGE_BUNDLE = new MessageBundle(
-        Util.searchFor(MESSAGE_BUNDLE_JSON, App.class));
+        Util.load(MESSAGE_BUNDLE_JSON, App.class));
 
     private static final Map<Integer, String> MESSAGE_CODES;
 
@@ -41,7 +39,7 @@ public class App {
     }
 
     static {
-        MESSAGE_CODES = Arrays.asList(FailureCodes.values())
+        MESSAGE_CODES = Arrays.asList(ErrorCodes.values())
             .stream().collect(Collectors.toMap(v -> v.code(), v -> v.messageCode()));
         MESSAGE_CODES.putAll(Arrays.asList(MyRespCodes.values())
             .stream().collect(Collectors.toMap(v -> v.code(), v -> v.messageCode())));
